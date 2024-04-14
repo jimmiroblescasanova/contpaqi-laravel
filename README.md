@@ -23,30 +23,18 @@ You can install the package via composer:
 composer require jimmiroblescasanova/contpaqi-laravel
 ```
 
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --tag="contpaqi-laravel-migrations"
-php artisan migrate
-```
-
 You can publish the config file with:
 
 ```bash
-php artisan vendor:publish --tag="contpaqi-laravel-config"
+php artisan vendor:publish --tag="contpaqi-config"
 ```
 
-This is the contents of the published config file:
-
+Definir la conexion a la base de datos en el archivo env
 ```php
-return [
-];
-```
-
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag="contpaqi-laravel-views"
+CONTPAQI_HOST=10.8.0.1
+CONTPAQI_DATABASE=adAGROTERRA
+CONTPAQI_USER=sa
+CONTPAQI_PSW="JRC$$159753"
 ```
 
 ## Usage
@@ -77,7 +65,6 @@ Please review [our security policy](../../security/policy) on how to report secu
 ## Credits
 
 - [Jimmi Robles](https://github.com/jimmiroblescasanova)
-- [All Contributors](../../contributors)
 
 ## License
 

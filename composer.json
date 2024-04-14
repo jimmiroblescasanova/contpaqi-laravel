@@ -1,5 +1,6 @@
 {
     "name": "jimmiroblescasanova/contpaqi-laravel",
+    "version": "0.0.1",
     "description": "Paquete para conectar las bases de datos SQL de CONTPAQi a Laravel",
     "keywords": [
         "Jimmi Robles",
@@ -71,7 +72,8 @@
                 "jimmirobles\\ContpaqiLaravel\\ContpaqiLaravelServiceProvider"
             ],
             "aliases": {
-                "ContpaqiLaravel": "jimmirobles\\ContpaqiLaravel\\Facades\\ContpaqiLaravel"
+                "ContpaqiLaravel": "jimmirobles\\ContpaqiLaravel\\Facades\\ContpaqiLaravel",
+                "Clientes": "jimmirobles\\ContpaqiLaravel\\Facades\\Clientes"
             }
         }
     },
