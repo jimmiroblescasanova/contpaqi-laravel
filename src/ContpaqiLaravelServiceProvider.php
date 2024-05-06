@@ -37,7 +37,7 @@ class ContpaqiLaravelServiceProvider extends PackageServiceProvider
         $this->setConnection();
 
         // Define la relacion polimorfica de las direcciones
-        Relation::enforceMorphMap([
+        Relation::morphMap([
             '1' => 'jimmirobles\ContpaqiLaravel\Models\admClientes',
             '3' => 'jimmirobles\ContpaqiLaravel\Models\admDocumentos',
         ]);

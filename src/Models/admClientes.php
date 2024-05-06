@@ -2,11 +2,12 @@
 
 namespace jimmirobles\ContpaqiLaravel\Models;
 
+use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Builder;
 use jimmirobles\ContpaqiLaravel\Models\BaseModel;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
-class Clientes extends BaseModel
+class admClientes extends BaseModel
 {
     protected $table = 'admClientes';
 
@@ -40,5 +41,20 @@ class Clientes extends BaseModel
     public function scopeBuscarPorCodigo(Builder $query, string $code): void
     {
         $query->where('CCODIGOCLIENTE', $code);
+    }
+
+    public function scopeClientes(Builder $query): void
+    {
+        $query->where('CTIPOCLIENTE', 1)->orWhere('CTIPOCLIENTE', 2);
+    }
+
+    public function scopeProveedores(Builder $query): void
+    {
+        $query->where('CTIPOCLIENTE', 3)->orWhere('CTIPOCLIENTE', 2);
+    }
+
+    public function scopeSelectOptions(Builder $query): Collection
+    {
+        return $query->pluck('CRAZONSOCIAL', 'CIDCLIENTEPROVEEDOR');
     }
 }

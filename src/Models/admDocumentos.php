@@ -45,6 +45,18 @@ class admDocumentos extends BaseModel
     }
 
     /**
+     * Regresa el ultimo id de la tabla
+     *
+     * @return int
+     */
+    public static function getLastId(): int
+    {
+        return static::query()
+            ->orderBy('CIDDOCUMENTO', 'DESC')
+            ->value('CIDDOCUMENTO');
+    }
+
+    /**
      * Realiza el filtrado por el codigo del concepto
      *
      * @param Builder $query
