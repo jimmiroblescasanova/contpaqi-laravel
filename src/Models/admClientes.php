@@ -43,16 +43,34 @@ class admClientes extends BaseModel
         $query->where('CCODIGOCLIENTE', $code);
     }
 
+    /**
+     * Hace un filtrado de solamente los clientes y cliente-proveedor
+     *
+     * @param Builder $query
+     * @return void
+     */
     public function scopeClientes(Builder $query): void
     {
         $query->where('CTIPOCLIENTE', 1)->orWhere('CTIPOCLIENTE', 2);
     }
 
+    /**
+     * Hace un filtrado de solamente los proveedores y clientes-proveedores
+     *
+     * @param Builder $query
+     * @return void
+     */
     public function scopeProveedores(Builder $query): void
     {
         $query->where('CTIPOCLIENTE', 3)->orWhere('CTIPOCLIENTE', 2);
     }
 
+    /**
+     * Aplica el metodo pluck de laravel para devolver el ID y la Razon social
+     *
+     * @param Builder $query
+     * @return Collection
+     */
     public function scopeSelectOptions(Builder $query): Collection
     {
         return $query->pluck('CRAZONSOCIAL', 'CIDCLIENTEPROVEEDOR');

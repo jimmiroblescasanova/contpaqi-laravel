@@ -44,6 +44,7 @@ class admClasificaciones extends BaseModel
         $query->where('CNOMBRECLASIFICACION', 'LIKE', '%' . $nombreClasificacion . '%');
     }
 
+    // TODO: Documentar las demas funciones
     public function scopeAgentes(Builder $query): void
     {
         $query->whereBetween('CIDCLASIFICACION', [1, 6]);

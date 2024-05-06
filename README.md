@@ -29,10 +29,63 @@ CONTPAQI_PSW="password"
 
 ## Usage
 
-```php
-$contpaqiLaravel = new jimmirobles\ContpaqiLaravel();
-echo $contpaqiLaravel->echoPhrase('Hello, jimmirobles!');
+Las tablas de comercial estan declaradas como modelos de laravel, con el mismo nombre (ej. admClientes), a la cual existen algunos metodos para obtener la informacion. 
+
+Ejemplo de scope para el modelo admClientes:
+```php 
+$clientes = admClientes::all();
 ```
+
+## admClientes
+Los scope para clientes son los siguientes: 
+
+| Scope | Descripcion |
+| ------ | ------ |
+| buscarPorCodigo(string $codigo)   | Acepta un string con el codigo del cliente   |
+| clientes() | Hace un filtrado de solamente los clientes y cliente-proveedor |
+| proveedores() | Hace un filtrado de solamente los proveedores y clientes-proveedores |
+| selectOptions() | Aplica el metodo pluck de laravel para devolver el ID y la Razon social |
+
+Ejemplo de uso: 
+```php 
+$select = admClientes::clientes()->selectOptions();
+```
+
+## admConceptos
+Para obtener la informacion de los conceptos del sistema se tienen las siguientes scope: 
+
+| Scope | Descripcion | 
+| ----- | -----|
+| selectOptions() | Aplica el metodo pluck de laravel para devolver el ID y el nombre del concepto |
+
+Y tambien con un par de funciones estaticas que devuelven datos concisos: 
+
+| Funcion | Devuelve | Descripcion 
+| ----- | ----- | -----
+| ultimoFolio(int $concepto) | int | Devuelve el ultimo folio usado en el concepto 
+| findById(int $concepto) | array | Devuelve un array con la informacion del concepto 
+
+## admDocumentos
+Para el modelo de los documentos, se cuentan con los siguientes scopes y funciones: 
+
+| Scope | Descripcion 
+| ----- | ----- 
+| codigoConcepto(string $codigoConcepto) | Devuelve los documentos que pertenezcan al id del concepto indicado 
+| buscarPorFolio(string\|int \$folio, string \$serie = null) | Realiza la busqueda de un documento en especifico, se requiere un folio y la serie es opcional
+| facturas() | Hace un filtrado por todos los documentos con tipo de documento sea Factura 
+
+Funciones: 
+| Funcion | Devuelve | Descripcion 
+| ----- | ----- | -----
+| getLastId() | int | Devuelve el valor del ultimo id en la base de datos 
+
+## Relaciones 
+Ejemplos de los modelos con algunas relaciones existentes: 
+
+```php 
+$documento = admDocumentos::with('domicilios')->buscarPorFolio('1', 'A')->get();
+```
+Nos va a regresar una coleccion de laravel con los datos del documento y sus domicilios asociados. 
 
 ## Changelog
 

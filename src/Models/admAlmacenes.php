@@ -14,6 +14,11 @@ class admAlmacenes extends BaseModel
 
     public $timestamps = false;
 
+    /**
+     * Global scope para excluir el almacen 0 de los query
+     *
+     * @return void
+     */
     protected static function booted(): void
     {
         static::addGlobalScope('withoutZero', function (Builder $builder) {
@@ -21,6 +26,12 @@ class admAlmacenes extends BaseModel
         });
     }
 
+    /**
+     * Aplica el metodo pluck de laravel para devolver el ID y nombre del almacen
+     *
+     * @param Builder $query
+     * @return Collection
+     */
     public function scopeSelectOptions(Builder $query): Collection
     {
         return $query->pluck('CNOMBREALMACEN', 'CIDALMACEN');

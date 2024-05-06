@@ -4,7 +4,6 @@ namespace jimmirobles\ContpaqiLaravel\Models;
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Builder;
 use jimmirobles\ContpaqiLaravel\Models\BaseModel;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class admProyectos extends BaseModel
 {
@@ -14,6 +13,11 @@ class admProyectos extends BaseModel
 
     public $timestamps = false;
 
+    /**
+     * Global scope para no incluir el proyecto 0 en los query
+     *
+     * @return void
+     */
     protected static function booted(): void
     {
         static::addGlobalScope('withoutZero', function (Builder $builder) {

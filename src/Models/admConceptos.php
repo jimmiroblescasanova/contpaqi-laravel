@@ -26,6 +26,12 @@ class admConceptos extends BaseModel
             ->value('CNOFOLIO');
     }
 
+    /**
+     * Devuelve un array con la informacion del concepto
+     *
+     * @param integer $concepto
+     * @return array
+     */
     public static function findById(int $concepto): array
     {
         return static::query()
@@ -34,6 +40,12 @@ class admConceptos extends BaseModel
         ->toArray();
     }
 
+    /**
+     * Aplica el metodo pluck de laravel para devolver el ID y el nombre del concepto
+     *
+     * @param Builder $query
+     * @return Collection
+     */
     public function scopeSelectOptions(Builder $query): Collection
     {
         return $query->pluck('CNOMBRECONCEPTO', 'CIDCONCEPTODOCUMENTO');

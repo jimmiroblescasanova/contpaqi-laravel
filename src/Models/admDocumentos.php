@@ -44,6 +44,8 @@ class admDocumentos extends BaseModel
         );
     }
 
+    // TODO: Agregar la relacion de los movimientos
+
     /**
      * Regresa el ultimo id de la tabla
      *
