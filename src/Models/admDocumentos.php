@@ -4,6 +4,7 @@ namespace jimmirobles\ContpaqiLaravel\Models;
 use Illuminate\Database\Eloquent\Builder;
 use jimmirobles\ContpaqiLaravel\Models\BaseModel;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class admDocumentos extends BaseModel
@@ -44,7 +45,19 @@ class admDocumentos extends BaseModel
         );
     }
 
-    // TODO: Agregar la relacion de los movimientos
+    /**
+     * Relacion del documento a sus movimientos
+     *
+     * @return BelongsTo
+     */
+    public function movimientos(): HasMany
+    {
+        return $this->hasMany(
+            related: admMovimientos::class, 
+            foreignKey: 'CIDDOCUMENTO', 
+            localKey: 'CIDDOCUMENTO'
+        );
+    }
 
     /**
      * Regresa el ultimo id de la tabla
