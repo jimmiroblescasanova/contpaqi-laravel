@@ -32,6 +32,17 @@ class admClientes extends BaseModel
     }
 
     /**
+     * Return only active clients or suppliers
+     *
+     * @param Builder $query
+     * @return void
+     */
+    public function scopeActive(Builder $query): void
+    {
+        $query->where(column: 'CESTATUS', operator: '=', value: 1);
+    }
+
+    /**
      * Realiza la busqueda del cliente por su codigo del sistema
      *
      * @param Builder $query
