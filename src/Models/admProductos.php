@@ -1,8 +1,8 @@
 <?php
+
 namespace jimmirobles\ContpaqiLaravel\Models;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use jimmirobles\ContpaqiLaravel\Models\BaseModel;
 
 class admProductos extends BaseModel
 {
@@ -15,8 +15,8 @@ class admProductos extends BaseModel
     public function unidad(): BelongsTo
     {
         return $this->belongsTo(
-            admUnidadesMedidaPeso::class, 
-            foreignKey: 'CIDUNIDADBASE', 
+            admUnidadesMedidaPeso::class,
+            foreignKey: 'CIDUNIDADBASE',
             ownerKey: 'CIDUNIDAD');
     }
 

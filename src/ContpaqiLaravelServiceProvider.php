@@ -2,11 +2,11 @@
 
 namespace jimmirobles\ContpaqiLaravel;
 
-use Illuminate\Support\Facades\Config;
-use Spatie\LaravelPackageTools\Package;
 use Illuminate\Database\Eloquent\Relations\Relation;
-use Spatie\LaravelPackageTools\PackageServiceProvider;
+use Illuminate\Support\Facades\Config;
 use jimmirobles\ContpaqiLaravel\Commands\ContpaqiLaravelCommand;
+use Spatie\LaravelPackageTools\Package;
+use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 class ContpaqiLaravelServiceProvider extends PackageServiceProvider
 {
@@ -25,43 +25,41 @@ class ContpaqiLaravelServiceProvider extends PackageServiceProvider
             ->hasCommand(ContpaqiLaravelCommand::class);
     }
 
-    public function boot()
+    public function boot(): void
     {
         if ($this->app->runningInConsole()) {
 
             $this->publishes([
-                __DIR__ . '/../config/contpaqi.php' => config_path('contpaqi.php'),
+                __DIR__.'/../config/contpaqi.php' => config_path('contpaqi.php'),
             ], 'contpaqi-config');
         }
 
         $this->setConnection();
 
-        // Define la relacion polimorfica de las direcciones
+        // Define la relación polimórfica de las direcciones
         Relation::morphMap([
             '1' => 'jimmirobles\ContpaqiLaravel\Models\admClientes',
             '3' => 'jimmirobles\ContpaqiLaravel\Models\admDocumentos',
         ]);
     }
 
-    public function register()
+    public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/contpaqi.php', 'contpaqi');
+        $this->mergeConfigFrom(__DIR__.'/../config/contpaqi.php', 'contpaqi');
     }
 
     /**
-     * Define la conexion primaria para los modelos
-     *
-     * @return void
+     * Define la conexión primaria para los modelos
      */
-    public function setConnection()
+    public function setConnection(): void
     {
         $connection = Config::get('contpaqi.default');
 
         if ($connection !== 'default') {
-            $wardrobeConfig = Config::get('contpaqi.connections.' . $connection);
+            $wardrobeConfig = Config::get('contpaqi.connections.'.$connection);
         } else {
             $connection = Config::get('database.default');
-            $wardrobeConfig = Config::get('database.connections.' . $connection);
+            $wardrobeConfig = Config::get('database.connections.'.$connection);
         }
 
         Config::set('database.connections.contpaqi', $wardrobeConfig);

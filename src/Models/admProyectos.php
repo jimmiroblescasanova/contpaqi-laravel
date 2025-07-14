@@ -1,9 +1,9 @@
 <?php
+
 namespace jimmirobles\ContpaqiLaravel\Models;
 
-use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Builder;
-use jimmirobles\ContpaqiLaravel\Models\BaseModel;
+use Illuminate\Support\Collection;
 
 class admProyectos extends BaseModel
 {
@@ -15,8 +15,6 @@ class admProyectos extends BaseModel
 
     /**
      * Global scope para no incluir el proyecto 0 en los query
-     *
-     * @return void
      */
     protected static function booted(): void
     {
@@ -28,9 +26,9 @@ class admProyectos extends BaseModel
     public static function findById(int $proyecto): array
     {
         return static::query()
-        ->where('CIDPROYECTO', $proyecto)
-        ->first()
-        ->toArray();
+            ->where('CIDPROYECTO', $proyecto)
+            ->first()
+            ->toArray();
     }
 
     public function scopeSelectOptions(Builder $query): Collection

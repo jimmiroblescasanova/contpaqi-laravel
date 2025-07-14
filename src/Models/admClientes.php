@@ -1,11 +1,10 @@
-<?php 
+<?php
 
 namespace jimmirobles\ContpaqiLaravel\Models;
 
-use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Builder;
-use jimmirobles\ContpaqiLaravel\Models\BaseModel;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Support\Collection;
 
 class admClientes extends BaseModel
 {
@@ -16,9 +15,7 @@ class admClientes extends BaseModel
     public $timestamps = false;
 
     /**
-     * Define la relacion a la tabla domicilios
-     *
-     * @return MorphMany
+     * Define la relación a la tabla domicilios
      */
     public function domicilios(): MorphMany
     {
@@ -33,9 +30,6 @@ class admClientes extends BaseModel
 
     /**
      * Return only active clients or suppliers
-     *
-     * @param Builder $query
-     * @return void
      */
     public function scopeActive(Builder $query): void
     {
@@ -43,11 +37,7 @@ class admClientes extends BaseModel
     }
 
     /**
-     * Realiza la busqueda del cliente por su codigo del sistema
-     *
-     * @param Builder $query
-     * @param string $code
-     * @return void
+     * Realiza la búsqueda del cliente por su código del sistema
      */
     public function scopeBuscarPorCodigo(Builder $query, string $code): void
     {
@@ -56,9 +46,6 @@ class admClientes extends BaseModel
 
     /**
      * Hace un filtrado de solamente los clientes y cliente-proveedor
-     *
-     * @param Builder $query
-     * @return void
      */
     public function scopeClientes(Builder $query): void
     {
@@ -67,9 +54,6 @@ class admClientes extends BaseModel
 
     /**
      * Hace un filtrado de solamente los proveedores y clientes-proveedores
-     *
-     * @param Builder $query
-     * @return void
      */
     public function scopeProveedores(Builder $query): void
     {
@@ -77,10 +61,7 @@ class admClientes extends BaseModel
     }
 
     /**
-     * Aplica el metodo pluck de laravel para devolver el ID y la Razon social
-     *
-     * @param Builder $query
-     * @return Collection
+     * Aplica el método pluck de laravel para devolver el ID y la razón social
      */
     public function scopeSelectOptions(Builder $query): Collection
     {

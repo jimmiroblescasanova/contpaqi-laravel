@@ -1,8 +1,8 @@
 <?php
+
 namespace jimmirobles\ContpaqiLaravel\Models;
 
 use Illuminate\Database\Eloquent\Builder;
-use jimmirobles\ContpaqiLaravel\Models\BaseModel;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
@@ -17,8 +17,6 @@ class admDocumentos extends BaseModel
 
     /**
      * Relacion a la tabla domicilios
-     *
-     * @return MorphMany
      */
     public function domicilios(): MorphMany
     {
@@ -33,14 +31,12 @@ class admDocumentos extends BaseModel
 
     /**
      * Relacion del documento al concepto
-     *
-     * @return BelongsTo
      */
     public function concepto(): BelongsTo
     {
         return $this->belongsTo(
-            related: admConceptos::class, 
-            foreignKey: 'CIDCONCEPTODOCUMENTO', 
+            related: admConceptos::class,
+            foreignKey: 'CIDCONCEPTODOCUMENTO',
             ownerKey: 'CIDCONCEPTODOCUMENTO'
         );
     }
@@ -53,16 +49,14 @@ class admDocumentos extends BaseModel
     public function movimientos(): HasMany
     {
         return $this->hasMany(
-            related: admMovimientos::class, 
-            foreignKey: 'CIDDOCUMENTO', 
+            related: admMovimientos::class,
+            foreignKey: 'CIDDOCUMENTO',
             localKey: 'CIDDOCUMENTO'
         );
     }
 
     /**
      * Regresa el ultimo id de la tabla
-     *
-     * @return int
      */
     public static function getLastId(): int
     {
@@ -73,45 +67,31 @@ class admDocumentos extends BaseModel
 
     /**
      * Realiza el filtrado por el codigo del concepto
-     *
-     * @param Builder $query
-     * @param string $codigoConcepto
-     * @return void
      */
     public function scopeCodigoConcepto(Builder $query, string $codigoConcepto): void
     {
-        $query->whereHas('concepto', function($q) use ($codigoConcepto){
+        $query->whereHas('concepto', function ($q) use ($codigoConcepto) {
             $q->where('CCODIGOCONCEPTO', $codigoConcepto);
         });
     }
 
     /**
      * Realiza la busqueda de documentos por folio y/o serie
-     *
-     * @param Builder $query
-     * @param integer|string $folio
-     * @param string|null $serie
-     * @return void
      */
-    public function scopeBuscarPorFolio(Builder $query, int|string $folio, string $serie = null): void
+    public function scopeBuscarPorFolio(Builder $query, int|string $folio, ?string $serie = null): void
     {
         $query
             ->where(column: 'CFOLIO', operator: '=', value: $folio)
-            ->when($serie, function ($q) use ($serie){
+            ->when($serie, function ($q) use ($serie) {
                 $q->where(column: 'CSERIEDOCUMENTO', operator: '=', value: $serie);
             });
     }
 
     /**
      * Filtra los documentos a tipo factura, independiente del concepto
-     *
-     * @param Builder $query
-     * @return void
      */
     public function scopeFacturas(Builder $query): void
     {
         $query->where(column: 'CIDDOCUMENTODE', operator: '=', value: 4);
     }
-
-    
 }

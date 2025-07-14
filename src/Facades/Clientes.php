@@ -3,14 +3,15 @@
 namespace jimmirobles\ContpaqiLaravel\Facades;
 
 use Illuminate\Support\Facades\Facade;
+use jimmirobles\ContpaqiLaravel\ClientesFacade;
 
 /**
- * @see \jimmirobles\ContpaqiLaravel\ContpaqiLaravel
+ * @see ClientesFacade
  */
 class Clientes extends Facade
 {
-    protected static function getFacadeAccessor()
+    protected static function getFacadeAccessor(): string
     {
-        return \jimmirobles\ContpaqiLaravel\ClientesFacade::class;
+        return ClientesFacade::class;
     }
 }

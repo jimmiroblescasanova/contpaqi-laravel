@@ -1,7 +1,6 @@
 <?php
-namespace jimmirobles\ContpaqiLaravel\Models;
 
-use jimmirobles\ContpaqiLaravel\Models\BaseModel;
+namespace jimmirobles\ContpaqiLaravel\Models;
 
 class admUnidadesMedidaPeso extends BaseModel
 {

@@ -1,9 +1,9 @@
 <?php
+
 namespace jimmirobles\ContpaqiLaravel\Models;
 
-use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Builder;
-use jimmirobles\ContpaqiLaravel\Models\BaseModel;
+use Illuminate\Support\Collection;
 
 class admConceptos extends BaseModel
 {
@@ -15,9 +15,6 @@ class admConceptos extends BaseModel
 
     /**
      * Returns the las Folio used in the concepto
-     *
-     * @param integer $concepto
-     * @return integer
      */
     public static function ultimoFolio(int $concepto): int
     {
@@ -27,24 +24,18 @@ class admConceptos extends BaseModel
     }
 
     /**
-     * Devuelve un array con la informacion del concepto
-     *
-     * @param integer $concepto
-     * @return array
+     * Devuelve un array con la información del concepto
      */
     public static function findById(int $concepto): array
     {
         return static::query()
-        ->where('CIDCONCEPTODOCUMENTO', $concepto)
-        ->first()
-        ->toArray();
+            ->where('CIDCONCEPTODOCUMENTO', $concepto)
+            ->first()
+            ->toArray();
     }
 
     /**
-     * Aplica el metodo pluck de laravel para devolver el ID y el nombre del concepto
-     *
-     * @param Builder $query
-     * @return Collection
+     * Scope to generate a collection of options for select inputs
      */
     public function scopeSelectOptions(Builder $query): Collection
     {

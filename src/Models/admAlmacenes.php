@@ -1,10 +1,9 @@
-<?php 
+<?php
 
 namespace jimmirobles\ContpaqiLaravel\Models;
 
-use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Builder;
-use jimmirobles\ContpaqiLaravel\Models\BaseModel;
+use Illuminate\Support\Collection;
 
 class admAlmacenes extends BaseModel
 {
@@ -15,9 +14,7 @@ class admAlmacenes extends BaseModel
     public $timestamps = false;
 
     /**
-     * Global scope para excluir el almacen 0 de los query
-     *
-     * @return void
+     * Global scope para excluir el almacén 0 de los query
      */
     protected static function booted(): void
     {
@@ -27,10 +24,7 @@ class admAlmacenes extends BaseModel
     }
 
     /**
-     * Aplica el metodo pluck de laravel para devolver el ID y nombre del almacen
-     *
-     * @param Builder $query
-     * @return Collection
+     * Aplica el método pluck de laravel para devolver el ID y nombre del almacén
      */
     public function scopeSelectOptions(Builder $query): Collection
     {

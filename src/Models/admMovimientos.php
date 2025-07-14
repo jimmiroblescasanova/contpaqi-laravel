@@ -1,10 +1,6 @@
-<?php 
+<?php
 
 namespace jimmirobles\ContpaqiLaravel\Models;
-
-use Illuminate\Support\Collection;
-use Illuminate\Database\Eloquent\Builder;
-use jimmirobles\ContpaqiLaravel\Models\BaseModel;
 
 class admMovimientos extends BaseModel
 {
@@ -16,8 +12,6 @@ class admMovimientos extends BaseModel
 
     /**
      * Regresa el ultimo id de la tabla
-     *
-     * @return int
      */
     public static function getLastId(): int
     {
